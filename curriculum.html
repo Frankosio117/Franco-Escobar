@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Franco Escobar — Curriculum</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0d0d0d;
+    --ink2: #3a3a3a;
+    --ink3: #7a7a7a;
+    --paper: #f5f2ed;
+    --paper2: #ede9e2;
+    --paper3: #e3dfd7;
+    --accent: #c8501a;
+    --accent2: #e8703a;
+    --white: #ffffff;
+    --border: rgba(13,13,13,0.12);
+    --font-display: 'Syne', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--paper);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(245,242,237,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-weight: 800; font-size: 1.15rem;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.85rem; font-weight: 400; letter-spacing: 0.04em;
+    text-transform: uppercase; color: var(--ink2);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  
+  .nav-actions {
+    display: flex; align-items: center; gap: 1.5rem;
+  }
+  
+  .theme-toggle {
+    background: transparent;
+    border: 1.5px solid var(--border);
+    width: 40px; height: 40px;
+    border-radius: 0.5rem;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: border-color 0.2s, background 0.2s;
+    color: var(--ink2);
+  }
+  .theme-toggle:hover {
+    border-color: var(--accent);
+    background: rgba(200,80,26,0.05);
+  }
+  .theme-toggle svg {
+    width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2;
+  }
+  
+  .nav-cta {
+    background: var(--ink); color: var(--paper);
+    padding: 0.55rem 1.4rem; border-radius: 2rem;
+    font-size: 0.82rem; font-weight: 500;
+    text-decoration: none; letter-spacing: 0.02em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .nav-cta:hover { background: var(--accent); transform: translateY(-1px); }
+
+  /* SECTION BASE */
+  section { padding: 6rem 4rem; }
+  .section-tag {
+    display: inline-block;
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--accent);
+    background: rgba(200,80,26,0.08);
+    padding: 0.25rem 0.7rem; border-radius: 0.5rem;
+    margin-bottom: 0.8rem;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800; letter-spacing: -0.02em;
+    line-height: 1.1; color: var(--ink);
+    margin-bottom: 0.8rem;
+  }
+  .section-sub {
+    font-size: 1rem; color: var(--ink3); line-height: 1.7;
+    max-width: 580px;
+  }
+  .section-header { margin-bottom: 3.5rem; }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px; background: var(--border);
+    margin: 0 4rem;
+  }
+
+  /* CURRICULUM */
+  #curriculum { background: var(--paper); }
+  .cv-layout {
+    display: grid; grid-template-columns: 1fr 320px;
+    gap: 4rem; align-items: start;
+  }
+  .cv-timeline { position: relative; }
+  .cv-timeline::before {
+    content: '';
+    position: absolute; left: 0; top: 12px; bottom: 0;
+    width: 1px; background: var(--border);
+  }
+  .cv-item {
+    padding-left: 2.5rem; position: relative; margin-bottom: 3rem;
+  }
+  .cv-item::before {
+    content: '';
+    position: absolute; left: -5px; top: 8px;
+    width: 11px; height: 11px; border-radius: 50%;
+    background: var(--paper); border: 2px solid var(--accent);
+  }
+  .cv-item:first-child::before { background: var(--accent); }
+  .cv-date {
+    font-size: 0.75rem; color: var(--accent); font-weight: 600;
+    letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.4rem;
+  }
+  .cv-company {
+    font-family: var(--font-display);
+    font-size: 1.2rem; font-weight: 700; margin-bottom: 0.3rem;
+  }
+  .cv-role { font-size: 0.85rem; color: var(--ink3); margin-bottom: 0.8rem; }
+  .cv-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+  .cv-bullets li {
+    font-size: 0.88rem; color: var(--ink2); line-height: 1.5;
+    padding-left: 1rem; position: relative;
+  }
+  .cv-bullets li::before {
+    content: '—'; position: absolute; left: 0;
+    color: var(--accent); font-size: 0.8rem;
+  }
+
+  /* Skills sidebar */
+  .cv-sidebar { position: sticky; top: 7rem; }
+  .skills-block { background: var(--white); border-radius: 1rem; padding: 1.8rem; border: 1px solid var(--border); margin-bottom: 1.5rem; }
+  .skills-block h4 {
+    font-family: var(--font-display);
+    font-size: 0.85rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--ink3); margin-bottom: 1.2rem;
+  }
+  .skill-item { margin-bottom: 1rem; }
+  .skill-label {
+    display: flex; justify-content: space-between;
+    font-size: 0.85rem; font-weight: 500; margin-bottom: 0.4rem;
+  }
+  .skill-pct { font-size: 0.78rem; color: var(--ink3); }
+  .skill-bar { height: 5px; background: var(--paper2); border-radius: 3px; overflow: hidden; }
+  .skill-fill { height: 100%; background: var(--accent); border-radius: 3px; }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink); color: var(--paper);
+    padding: 3rem 4rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .footer-brand {
+    font-family: var(--font-display);
+    font-size: 1.1rem; font-weight: 800;
+    color: var(--white);
+  }
+  .footer-brand span { color: var(--accent2); }
+  .footer-copy { font-size: 0.8rem; color: rgba(245,242,237,0.4); }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a {
+    font-size: 0.82rem; color: rgba(245,242,237,0.5);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--accent2); }
+
+  /* ANIMATIONS */
+  .fade-up {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  /* DARK MODE */
+  body.dark-mode {
+    --ink: #f5f2ed;
+    --ink2: #d4cfc8;
+    --ink3: #a8a39a;
+    --paper: #0d0d0d;
+    --paper2: #1a1a1a;
+    --paper3: #262626;
+    --border: rgba(245,242,237,0.15);
+    background: var(--paper);
+    color: var(--ink);
+  }
+
+  body.dark-mode nav {
+    background: rgba(13,13,13,0.95);
+    border-bottom-color: rgba(245,242,237,0.1);
+  }
+
+  body.dark-mode .nav-logo,
+  body.dark-mode .nav-links a,
+  body.dark-mode .nav-links a:hover {
+    color: var(--ink);
+  }
+
+  body.dark-mode .nav-links a:hover {
+    color: var(--accent2);
+  }
+
+  body.dark-mode .theme-toggle {
+    border-color: rgba(245,242,237,0.2);
+    color: var(--ink2);
+  }
+
+  body.dark-mode .theme-toggle:hover {
+    border-color: var(--accent2);
+    background: rgba(232,112,58,0.1);
+  }
+
+  body.dark-mode .skills-block {
+    background: var(--paper2);
+    border-color: rgba(245,242,237,0.1);
+  }
+
+  body.dark-mode .skills-block h4 {
+    color: var(--ink2);
+  }
+
+  body.dark-mode .skill-label,
+  body.dark-mode .skill-pct {
+    color: var(--ink2);
+  }
+
+  body.dark-mode .skill-bar {
+    background: var(--paper3);
+  }
+
+  body.dark-mode .cv-role,
+  body.dark-mode .cv-bullets li {
+    color: var(--ink2);
+  }
+
+  body.dark-mode .section-tag {
+    background: rgba(232,112,58,0.15);
+    color: var(--accent2);
+  }
+
+  body.dark-mode .section-sub {
+    color: var(--ink2);
+  }
+
+  body.dark-mode .divider {
+    border-color: rgba(245,242,237,0.1);
+  }
+
+  body.dark-mode footer {
+    background: var(--paper3);
+    border-top: 1px solid rgba(245,242,237,0.1);
+  }
+
+  body.dark-mode .footer-copy,
+  body.dark-mode .footer-links a {
+    color: var(--ink3);
+  }
+
+  /* Sección curriculum en modo oscuro */
+  body.dark-mode #curriculum {
+    background: var(--paper);
+  }
+
+  body.dark-mode .skills-block {
+    background: var(--paper2) !important;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    nav { padding: 1.2rem 2rem; }
+    section { padding: 5rem 2rem; }
+    .cv-layout { grid-template-columns: 1fr; }
+    .cv-sidebar { position: static; }
+    footer { flex-direction: column; gap: 1.2rem; text-align: center; }
+    .divider { margin: 0 2rem; }
+  }
+  @media (max-width: 640px) {
+    nav { padding: 1rem 1.2rem; }
+    .nav-links { display: none; }
+    .nav-actions { gap: 0.8rem; }
+    section { padding: 4rem 1.2rem; }
+    footer { padding: 2rem 1.2rem; }
+    .divider { margin: 0 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Franco<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html#servicios">Servicios</a></li>
+    <li><a href="index.html#portafolio">Portafolio</a></li>
+    <li><a href="index.html#grafico">Diseño Gráfico</a></li>
+    <li><a href="curriculum.html">CV</a></li>
+    <li><a href="index.html#sobre-mi">Sobre mí</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <a href="mailto:cfrankosio@gmail.com" class="nav-cta">Contratar</a>
+  </div>
+</nav>
+
+<!-- CURRICULUM -->
+<section id="curriculum">
+  <div class="section-header fade-up">
+    <div class="section-tag">Trayectoria</div>
+    <h2 class="section-title">Experiencia Laboral</h2>
+    <p class="section-sub">Más de una década construyendo marcas, diseñando experiencias y generando resultados digitales para empresas reales.</p>
+  </div>
+  <div class="cv-layout">
+    <div class="cv-timeline">
+
+      <div class="cv-item fade-up">
+        <div class="cv-date">Abril 2025 — Actualmente</div>
+        <div class="cv-company">Link Socially</div>
+        <div class="cv-role">Diseñador Web & Especialista SEO</div>
+        <ul class="cv-bullets">
+          <li>Diseño y desarrollo de sitios web corporativos y de servicios en WordPress con Elementor y Brizy Builder.</li>
+          <li>Implementación de estrategias SEO on-page: optimización de metadatos, estructura de URLs, velocidad de carga y contenido semántico.</li>
+          <li>Auditorías técnicas de SEO y mejoras de rendimiento web para mejorar el posicionamiento en Google.</li>
+          <li>Coordinación con el equipo de marketing para alinear diseño y estrategia de contenidos.</li>
+        </ul>
+      </div>
+
+      <div class="cv-item fade-up">
+        <div class="cv-date">Septiembre 2022 — Marzo 2025</div>
+        <div class="cv-company">Bunker Buró Creativo</div>
+        <div class="cv-role">Diseñador Web & Creativo Digital</div>
+        <ul class="cv-bullets">
+          <li>Desarrollo de sitios web para clientes de distintos giros: inmobiliarias, servicios, fotografía, arquitectura y más.</li>
+          <li>Gestión y diseño de campañas publicitarias en Meta Ads (Facebook & Instagram) con orientación a resultados.</li>
+          <li>Diseño gráfico integral: flyers, banners digitales, identidad visual y materiales de marca para clientes nacionales e internacionales.</li>
+          <li>Creación de contenido visual para redes sociales: posts, stories, reels y plantillas de marca.</li>
+          <li>Coordinación directa con clientes para la toma de requerimientos y entrega de proyectos.</li>
+        </ul>
+      </div>
+
+      <div class="cv-item fade-up">
+        <div class="cv-date">Enero 2022 — Abril 2023</div>
+        <div class="cv-company">Maxifarmacias</div>
+        <div class="cv-role">Diseñador Gráfico</div>
+        <ul class="cv-bullets">
+          <li>Elaboración de flyers publicitarios y material POP para promociones en punto de venta.</li>
+          <li>Diseño de campañas publicitarias y de temporada para la cadena de farmacias a nivel regional.</li>
+          <li>Producción de piezas gráficas para redes sociales, email marketing y medios impresos.</li>
+          <li>Coordinación con el área de marketing para asegurar coherencia visual en todas las comunicaciones de marca.</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- SIDEBAR SKILLS -->
+    <div class="cv-sidebar fade-up">
+      <div class="skills-block">
+        <h4>Diseño & Edición</h4>
+        <div class="skill-item">
+          <div class="skill-label"><span>Adobe Photoshop</span><span class="skill-pct">95%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-label"><span>Adobe Illustrator</span><span class="skill-pct">90%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-label"><span>Figma</span><span class="skill-pct">85%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+        </div>
+      </div>
+      <div class="skills-block">
+        <h4>Desarrollo Web</h4>
+        <div class="skill-item">
+          <div class="skill-label"><span>WordPress</span><span class="skill-pct">95%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-label"><span>Elementor / Brizy</span><span class="skill-pct">92%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:92%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-label"><span>HTML & CSS</span><span class="skill-pct">80%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-label"><span>JavaScript</span><span class="skill-pct">65%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:65%"></div></div>
+        </div>
+      </div>
+      <div class="skills-block">
+        <h4>Marketing Digital</h4>
+        <div class="skill-item">
+          <div class="skill-label"><span>Meta Ads</span><span class="skill-pct">88%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-label"><span>SEO On-Page</span><span class="skill-pct">82%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:82%"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">Franco<span>.</span>Escobar</div>
+  <div class="footer-copy">© 2025 Franco Escobar — Todos los derechos reservados</div>
+  <div class="footer-links">
+    <a href="mailto:cfrankosio@gmail.com">Email</a>
+    <a href="tel:+529613008003">Teléfono</a>
+    <a href="https://wa.me/529613008003" target="_blank" rel="noopener">WhatsApp</a>
+    <a href="tarjeta.html">Tarjeta</a>
+  </div>
+</footer>
+
+<script>
+  // Intersection Observer para fade-up
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+  // Activate elements immediately on page load
+  setTimeout(() => {
+    document.querySelectorAll('#curriculum .fade-up').forEach((el, i) => {
+      setTimeout(() => el.classList.add('visible'), i * 150);
+    });
+  }, 100);
+
+  // Theme toggle
+  const themeToggle = document.getElementById('themeToggle');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+  
+  function initTheme() {
+    const saved = localStorage.getItem('theme');
+    if (saved) {
+      document.body.classList.toggle('dark-mode', saved === 'dark');
+    } else if (prefersDark.matches) {
+      document.body.classList.add('dark-mode');
+    }
+  }
+
+  themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    const isDark = document.body.classList.contains('dark-mode');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  });
+
+  initTheme();
+  prefersDark.addEventListener('change', initTheme);
+</script>
+</body>
+</html>
