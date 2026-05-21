@@ -89,8 +89,91 @@
   }
   .nav-cta:hover { background: var(--accent); transform: translateY(-1px); }
 
+  /* MENU HAMBURGUESA & MOBILE NAV DRAWER */
+  .menu-toggle {
+    display: none;
+    background: transparent;
+    border: 1.5px solid var(--border);
+    width: 40px; height: 40px;
+    border-radius: 0.5rem;
+    align-items: center; justify-content: center;
+    cursor: pointer; transition: border-color 0.2s, background 0.2s;
+    color: var(--ink2);
+    z-index: 101;
+  }
+  .menu-toggle:hover {
+    border-color: var(--accent);
+    background: rgba(200,80,26,0.05);
+  }
+  .menu-toggle svg {
+    width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 2;
+  }
+  
+  body.no-scroll {
+    overflow: hidden !important;
+  }
+  
+  .mobile-menu-overlay {
+    position: fixed; inset: 0;
+    background: rgba(13, 13, 13, 0.4);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 98;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.35s ease;
+  }
+  .mobile-menu-overlay.active {
+    opacity: 1; pointer-events: auto;
+  }
+  
+  .mobile-menu {
+    position: fixed; top: 0; right: -100%;
+    width: 320px; height: 100vh;
+    background: rgba(245, 242, 237, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 99;
+    box-shadow: -10px 0 30px rgba(13,13,13,0.05);
+    transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex; flex-direction: column;
+    padding: 7rem 2.5rem 2.5rem;
+    border-left: 1px solid var(--border);
+  }
+  .mobile-menu.active {
+    right: 0;
+  }
+  
+  .mobile-links {
+    list-style: none;
+    display: flex; flex-direction: column;
+    gap: 1.8rem; margin-bottom: 3rem;
+  }
+  .mobile-links a {
+    font-family: var(--font-display);
+    font-size: 1.25rem; font-weight: 700; letter-spacing: 0.02em;
+    color: var(--ink); text-decoration: none; text-transform: uppercase;
+    transition: color 0.2s, transform 0.2s;
+    display: inline-block;
+  }
+  .mobile-links a:hover {
+    color: var(--accent); transform: translateX(4px);
+  }
+  
+  .mobile-cta {
+    background: var(--ink); color: var(--paper);
+    padding: 0.85rem 2rem; border-radius: 2rem;
+    font-size: 0.9rem; font-weight: 600;
+    text-decoration: none; letter-spacing: 0.04em;
+    text-transform: uppercase; text-align: center;
+    transition: background 0.2s, transform 0.15s;
+    margin-top: auto;
+  }
+  .mobile-cta:hover {
+    background: var(--accent); transform: translateY(-2px);
+  }
+
   /* SECTION BASE */
-  section { padding: 6rem 4rem; }
+  section { padding: 6rem 4rem; scroll-margin-top: 5.5rem; }
   .section-tag {
     display: inline-block;
     font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em;
@@ -119,7 +202,10 @@
   }
 
   /* CURRICULUM */
-  #curriculum { background: var(--paper); }
+  #curriculum {
+    background: var(--paper);
+    padding-top: 8rem;
+  }
   .cv-layout {
     display: grid; grid-template-columns: 1fr 320px;
     gap: 4rem; align-items: start;
@@ -297,20 +383,43 @@
     background: var(--paper2) !important;
   }
 
+  body.dark-mode .mobile-menu {
+    background: rgba(13, 13, 13, 0.98);
+    border-left-color: rgba(245, 242, 237, 0.15);
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+  }
+
+  body.dark-mode .menu-toggle {
+    border-color: rgba(245, 242, 237, 0.2);
+    color: var(--ink2);
+  }
+
+  body.dark-mode .menu-toggle:hover {
+    border-color: var(--accent2);
+    background: rgba(232, 112, 58, 0.1);
+  }
+
   /* RESPONSIVE */
   @media (max-width: 1024px) {
     nav { padding: 1.2rem 2rem; }
     section { padding: 5rem 2rem; }
+    #curriculum { padding-top: 7rem; }
     .cv-layout { grid-template-columns: 1fr; }
     .cv-sidebar { position: static; }
     footer { flex-direction: column; gap: 1.2rem; text-align: center; }
     .divider { margin: 0 2rem; }
   }
+  @media (max-width: 900px) {
+    .nav-links { display: none !important; }
+    .nav-cta { display: none !important; }
+    .menu-toggle { display: flex !important; }
+  }
   @media (max-width: 640px) {
     nav { padding: 1rem 1.2rem; }
-    .nav-links { display: none; }
+    .nav-logo { font-size: 0.95rem; }
     .nav-actions { gap: 0.8rem; }
     section { padding: 4rem 1.2rem; }
+    #curriculum { padding-top: 6.5rem; }
     footer { padding: 2rem 1.2rem; }
     .divider { margin: 0 1.2rem; }
   }
@@ -333,8 +442,25 @@
       <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
     </button>
     <a href="mailto:cfrankosio@gmail.com" class="nav-cta">Contratar</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+      <svg class="icon-menu" viewBox="0 0 24 24"><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" style="display: none;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
   </div>
 </nav>
+
+<!-- Mobile Navigation Overlay & Drawer -->
+<div class="mobile-menu-overlay" id="menuOverlay"></div>
+<div class="mobile-menu" id="mobileMenu">
+  <ul class="mobile-links">
+    <li><a href="index.html#servicios">Servicios</a></li>
+    <li><a href="index.html#portafolio">Portafolio</a></li>
+    <li><a href="index.html#grafico">Diseño Gráfico</a></li>
+    <li><a href="curriculum.html">CV</a></li>
+    <li><a href="index.html#sobre-mi">Sobre mí</a></li>
+  </ul>
+  <a href="mailto:cfrankosio@gmail.com" class="mobile-cta">Contratar</a>
+</div>
 
 <!-- CURRICULUM -->
 <section id="curriculum">
@@ -491,6 +617,47 @@
 
   initTheme();
   prefersDark.addEventListener('change', initTheme);
+
+  // Mobile Menu Logic
+  const menuToggle = document.getElementById('menuToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const menuOverlay = document.getElementById('menuOverlay');
+  const iconMenu = menuToggle.querySelector('.icon-menu');
+  const iconClose = menuToggle.querySelector('.icon-close');
+  const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+
+  function toggleMenu() {
+    const isOpen = mobileMenu.classList.toggle('active');
+    menuOverlay.classList.toggle('active', isOpen);
+    document.body.classList.toggle('no-scroll', isOpen);
+    
+    if (isOpen) {
+      iconMenu.style.display = 'none';
+      iconClose.style.display = 'block';
+      menuToggle.setAttribute('aria-label', 'Cerrar menú');
+    } else {
+      iconMenu.style.display = 'block';
+      iconClose.style.display = 'none';
+      menuToggle.setAttribute('aria-label', 'Abrir menú');
+    }
+  }
+
+  menuToggle.addEventListener('click', toggleMenu);
+  menuOverlay.addEventListener('click', toggleMenu);
+
+  mobileMenuLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      if (mobileMenu.classList.contains('active')) {
+        toggleMenu();
+      }
+    });
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 900 && mobileMenu.classList.contains('active')) {
+      toggleMenu();
+    }
+  });
 </script>
 </body>
 </html>
